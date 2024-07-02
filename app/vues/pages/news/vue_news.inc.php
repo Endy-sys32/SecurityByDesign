@@ -12,7 +12,7 @@ $news = GestionBDD::getNewsById($id);
     <br/>
     <a href="index.php?cas=compte">Compte</a>
     <br/>
-    <a href="index.php?cas=compte">news</a>
+    <a href="index.php?cas=news">news</a>
     <br/>
     <div class="title-main"><?php echo($news->title)?></div>
     <br/>
