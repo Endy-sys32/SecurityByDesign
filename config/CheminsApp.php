@@ -6,6 +6,7 @@ class CheminsApp
     const MODELES = "app/modele/";
     const VUES = "app/vues/";
     const VUES_PAGES = "app/vues/pages/";
+    const VUES_NEWS = "app/vues/pages/news/";
     const SERVICES = "app/services/";
     const VUES_PERMANENTES = "app/vues/permanentes/";
 

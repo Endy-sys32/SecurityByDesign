@@ -49,29 +49,39 @@ main {
         background-color: white;
     }
 
-    .content-main {
+    .main-content {
         display: flex;
-        justify-content: left;
+        justify-content: center;
         align-items: center;
-        padding-top: 50px;
-        padding-left: 50px;
-        font-size: 25px;
         background-color: white;
+    }
 
-        a {
-            text-decoration: none;
-            font-size: 25px;
-            color: black;
-            background-color: white;
-        }
+    a {
+        text-decoration: none;
+        font-size: 25px;
+        color: black;
+        background-color: white;
+    }
 
-        a:hover {
-            color: blue;
-        }
+    a:hover {
+        color: blue;
+    }
+
+    table {
+        text-align: center;
+        width: 50%;
     }
 
     form {
         background-color: white;
+
+        input {
+            background-color: white;
+        }
+
+        label {
+            background-color: white;
+        }
     }
 }
 

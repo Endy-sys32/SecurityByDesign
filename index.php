@@ -1,4 +1,7 @@
 <?php
+session_start();
+ob_start();
+
 require_once('config/CheminsApp.php');
 require_once CheminsApp::MODELES . 'gestionBDD.php';
 require_once CheminsApp::VUES_PERMANENTES . 'header.inc.php';
@@ -21,9 +24,22 @@ switch ($cas) {
         require CheminsApp::VUES_PAGES . 'compte.inc.php';
         break;
 
+    case 'news' :
+        require CheminsApp::VUES_PAGES . 'news.inc.php';
+        break;
+
+    case 'voir_news' :
+        require CheminsApp::VUES_NEWS . 'vue_news.inc.php';
+        break;
+
     case 'test' :
         require CheminsApp::VUES . 'test.inc.php';
         break;
+
+    case 'deco' :
+        $_SESSION = array();
+        session_destroy();
+        require CheminsApp::VUES_PERMANENTES . 'main.inc.php';
 
     default:
         require CheminsApp::VUES_PERMANENTES . 'main.inc.php';

@@ -10,20 +10,15 @@ if(isset($action) && $action == 'authent'){
 
 // Hasher le mot de passe avec SHA1
     $hashed_password = sha1($password);
-
-    echo($login . ' ' . $hashed_password);
     $isUser = GestionBDD::isUser($login, $hashed_password);
 
     if($isUser == true){
         $user = GestionBDD::getAllFromLoginPass($login, $hashed_password);
-//        var_dump($user);
-        echo ("<br>");
-        echo($user->id);
-        echo ("<br>");
-        echo($user->login);
-        echo ("<br>");
-        echo($user->password);
-        header("Location:index.php?cas=compte&action=connect");
+
+        $_SESSION['authenticated_user'] = $user->login;
+        setcookie('authenticated_user',$user->login, time()+ 7*24*3600, null, null, false, true);
+
+        header("Location:index.php?cas=compte&action=connect&id=$user->id");
         die();
     } else {
         header("Location:index.php?cas=login&action=failed&login=".$login);
@@ -31,6 +26,10 @@ if(isset($action) && $action == 'authent'){
 }
 
 if(isset($cas)){
+    if(isset($_SESSION['authenticated_user'])){
+        $user = GestionBDD::getAllFromLogin($_SESSION['authenticated_user']);
+        header("Location:index.php?cas=compte&action=connect&id=$user->id");
+    }
 ?>
 
 
@@ -46,7 +45,7 @@ if(isset($cas)){
 
 
 
-    <form action="index.php" method="get">
+    <form action="#" method="get">
         <label for="login">Login :</label>
         <input type="text" id="login" name="login" required><br><br>
 
@@ -54,7 +53,7 @@ if(isset($cas)){
         <input type="password" id="password" name="password" required><br><br>
         <input type="hidden" id="action" name="action" value="authent"><br><br>
 
-        <input type="submit" value="S'inscrire">
+        <input type="submit" value="Se connecter">
     </form>
 </main>
 

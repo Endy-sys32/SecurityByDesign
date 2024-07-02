@@ -69,4 +69,35 @@ class GestionBDD
         return self::$resultat;
     }
 
+    public static function getAllFromLogin($login){
+        self::seConnecter();
+        self::$requete = "SELECT * FROM users where login=:login";
+        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
+        self::$pdoStResults->bindValue('login', $login);
+        self::$pdoStResults->execute();
+        self::$resultat = self::$pdoStResults->fetch();
+        return self::$resultat;
+    }
+
+    public static function allNews(){
+        self::seConnecter();
+        self::$requete = "select * from news order by id asc";
+        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
+        self::$pdoStResults -> execute();
+        self::$resultat = self::$pdoStResults ->fetchAll();
+        self::$pdoStResults->closeCursor();
+        return self::$resultat;
+    }
+
+    public static function getNewsById($id){
+        self::seConnecter();
+        self::$requete = "select * from news where id=$id";
+        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$requete);
+        self::$pdoStResults -> execute();
+        self::$resultat = self::$pdoStResults ->fetch();
+        self::$pdoStResults->closeCursor();
+        return self::$resultat;
+    }
+
+
 }
